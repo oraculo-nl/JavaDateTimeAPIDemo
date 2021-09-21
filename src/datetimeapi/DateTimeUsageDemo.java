@@ -3,6 +3,7 @@ package datetimeapi;
 import java.time.*;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 
 public class DateTimeUsageDemo {
     public static void main(String[] args) {
@@ -13,7 +14,9 @@ public class DateTimeUsageDemo {
         minus();
         to();
         at();
+        temporalAdjusters();
     }
+
 
     private static void at() {
         var l = LocalDate.of(1800,1,1);
@@ -57,6 +60,17 @@ public class DateTimeUsageDemo {
         System.out.println("LocalDateTime with? " + l.with(DayOfWeek.FRIDAY));
         System.out.println("LocalDateTime with? " + l.withYear(1920));
         System.out.println("Decades until? " + l.until(LocalDateTime.of(2100,1,1,0,0,0), ChronoUnit.DECADES));
+    }
+
+    private static void temporalAdjusters() {
+        System.out.println(TemporalAdjusters.firstDayOfMonth().adjustInto(LocalDateTime.now()));
+        System.out.println(TemporalAdjusters.firstDayOfNextYear().adjustInto(LocalDateTime.now()));
+        System.out.println(TemporalAdjusters.firstDayOfYear().adjustInto(LocalDateTime.now()));
+        LocalDate localDate = LocalDate.now();
+        System.out.println(localDate.with(TemporalAdjusters.firstDayOfNextMonth()));
+        System.out.println(localDate.with(TemporalAdjusters.lastDayOfMonth()));
+        System.out.println(localDate.with(TemporalAdjusters.next(DayOfWeek.FRIDAY)));
+        System.out.println(localDate.with(TemporalAdjusters.previous(DayOfWeek.SATURDAY )));
     }
 
 }

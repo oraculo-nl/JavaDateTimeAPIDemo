@@ -1,12 +1,17 @@
 package datetimeapi;
 
 import java.time.*;
+import java.time.format.TextStyle;
+import java.util.Arrays;
+import java.util.Locale;
 
 public class AdditionalTypesDemo {
     public static void main(String[] args) {
         //Month month-of-year in isolation, such as 'DECEMBER'.
         Month month = Month.of(3);
         System.out.println("Month: "+month);
+        System.out.println(month.length(false));
+        Arrays.stream(Month.values()).forEach(System.out::println);
         //DayOfWeek single day-of-week in isolation, such as 'TUESDAY'.
         LocalDate today = LocalDate.now();
         System.out.println("getDayOfWeek: "+today.getDayOfWeek());             // SUNDAY
@@ -16,6 +21,7 @@ public class AdditionalTypesDemo {
         System.out.println("dayOfWeek = " + dayOfWeek);
         dayOfWeek = DayOfWeek.valueOf("SATURDAY");
         System.out.println("dayOfWeek = " + dayOfWeek);
+        System.out.println("displayName: "+ dayOfWeek.getDisplayName(TextStyle.FULL, Locale.forLanguageTag("nl")));
         //Year a single year in isolation, such as '2010'.
         Year y = Year.now();
         System.out.println("Year: "+y);

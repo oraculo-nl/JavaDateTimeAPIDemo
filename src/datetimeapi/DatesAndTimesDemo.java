@@ -1,18 +1,27 @@
 package datetimeapi;
 
 import java.time.*;
+import java.time.chrono.ChronoPeriod;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class DatesAndTimesDemo {
     static Instant instant;
 
     public static void main(String[] args) {
+        instantEpoch();
         instantDemo();
         localDateDemo();
         localTimeDemo();
         localDateTimeDemo();
         ZonedDateTimeDemo();
+    }
+
+    private static void instantEpoch() {
+        System.out.println(LocalDateTime.ofInstant(Instant.ofEpochMilli(-1_000_00), ZoneId.of("UTC")));
+        System.out.println(LocalDateTime.ofInstant(Instant.now().minus(Period.ofDays(1375)), ZoneId.systemDefault()));
+        System.out.println(LocalDateTime.parse("2017-12-16T18:43:48.446774").toInstant(ZoneOffset.UTC).getEpochSecond());
     }
 
     public static void instantDemo() {
