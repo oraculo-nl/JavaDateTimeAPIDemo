@@ -2,6 +2,7 @@ package datetimeapi;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class FormattingDemo {
     public static void main(String[] args) {
@@ -34,5 +35,10 @@ public class FormattingDemo {
         System.out.println(text);
         LocalDate parsedDate = LocalDate.parse(text, formatter);
         System.out.println(parsedDate);
+        formatter = DateTimeFormatter.ofPattern("yyyy MMMM d eeee", Locale.FRENCH);
+        System.out.println(date.format(formatter));
+        formatter = DateTimeFormatter.ofPattern("yyyy MMMM d eeee", Locale.forLanguageTag("es-ES"));
+        System.out.println(date.format(formatter));
+
     }
 }
